@@ -27,7 +27,9 @@ const TopBarNavBar = () => {
                     <li onClick={() => handleItemClick("/internet")}>Internet</li>
                     <li onClick={() => handleItemClick("/phone")}>Phone</li>
                     <li onClick={() => handleItemClick("/other")}>Other</li>
-                    {/*<li className="logout" onClick={() => handleItemClick("/login")}>Logout</li>*/}
+
+                    <li onClick={() => handleItemClick("/expense")}>Add Expense</li>
+
                     <li className="logout" onClick={() => handleItemClick("/logout")}>Logout</li>
 
                 </ul>

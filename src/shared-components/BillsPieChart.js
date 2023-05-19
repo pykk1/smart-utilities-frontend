@@ -3,7 +3,8 @@ import './style/BillsChart.css';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A6CEE3', '#FF00FF', '#FF6F00', '#00FF00', '#FF0000', '#FFFF00'];
 
-const renderLabel = ({name, value}) => `${name}: ${value.toFixed(2)} RON`;
+// const renderLabel = ({name, value}) => `${name}: ${value.toFixed(2)} RON`;
+const renderLabel = ({value}) => `${value.toFixed(2)} RON`;
 
 const BillsPieChart = ({bills}) => {
     const dataMap = bills.reduce((map, bill) => {
@@ -21,7 +22,7 @@ const BillsPieChart = ({bills}) => {
 
     return (
         <div className="chart-container">
-            <h2>Total costs: {roundedPrices.toFixed(2)} RON</h2>
+            <h2>Bills costs: {roundedPrices.toFixed(2)} RON</h2>
             <PieChart width={500} height={350}>
                 <Pie
                     dataKey="value"

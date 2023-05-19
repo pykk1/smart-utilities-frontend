@@ -40,7 +40,7 @@ const BillsBarChart = ({ bills }) => {
 
     return (
         <div className="chart-container">
-            <h2>Monthly Costs per year</h2>
+            <h2>Bills costs over time</h2>
             <div className="year-input">
                 <label htmlFor="year">Year:</label>
                 <input
@@ -48,7 +48,7 @@ const BillsBarChart = ({ bills }) => {
                     id="year"
                     value={selectedYear}
                     onChange={e => setSelectedYear(Number(e.target.value))}
-                    min={1900}
+                    min={2000}
                     max={currentYear + 10}
                 />
             </div>

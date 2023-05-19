@@ -20,6 +20,7 @@ import InternetView from "./user/bill-views/InternetView";
 import RentView from "./user/bill-views/RentView";
 import PhoneView from "./user/bill-views/PhoneView";
 import OtherView from "./user/bill-views/OtherView";
+import ExpenseCreation from "./user/ExpenseCreation";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -37,6 +38,7 @@ root.render(
                 <Route path="/admin/bill"
                        element={<PrivateRoute isAdminRoute={true}><AdminBillsCreation/></PrivateRoute>}/>
 
+
                 <Route path="/" element={<PrivateRoute isAdminRoute={false}><Dashboard/></PrivateRoute>}/>
                 <Route path="/bill" element={<PrivateRoute isAdminRoute={false}><BillCreation/></PrivateRoute>}/>
                 <Route path="/water" element={<PrivateRoute isAdminRoute={false}><WaterView/></PrivateRoute>}/>
@@ -48,6 +50,9 @@ root.render(
                 <Route path="/internet" element={<PrivateRoute isAdminRoute={false}><InternetView/></PrivateRoute>}/>
                 <Route path="/phone" element={<PrivateRoute isAdminRoute={false}><PhoneView/></PrivateRoute>}/>
                 <Route path="/other" element={<PrivateRoute isAdminRoute={false}><OtherView/></PrivateRoute>}/>
+
+
+                <Route path="/expense" element={<PrivateRoute isAdminRoute={false}><ExpenseCreation/></PrivateRoute>}/>
             </Routes>
         </Router>
     </React.StrictMode>,
