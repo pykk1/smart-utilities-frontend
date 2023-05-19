@@ -117,5 +117,9 @@
     flex-wrap: wrap;
 }
 
+.validation-error {
+    border: 1px solid red !important;
+}
+
 
 

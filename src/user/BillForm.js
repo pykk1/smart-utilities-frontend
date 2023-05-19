@@ -1,10 +1,13 @@
 import '../shared-components/style/Bill.css';
-import React, { useState } from 'react';
-import { authFetch } from '../shared-components/Functions';
+import React, {useState} from 'react';
+import {authFetch} from '../shared-components/Functions';
 import CustomSnackbar from '../shared-components/CustomSnackbar';
 
 const BillForm = () => {
     const token = sessionStorage.getItem('token');
+
+    const [validationError, setValidationError] = useState('');
+
     const [billType, setBillType] = useState('');
     const [unitsOfMeasurement, setUnitsOfMeasurement] = useState('');
     const [costPerUnit, setCostPerUnit] = useState(0);
@@ -33,6 +36,99 @@ const BillForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (billType === '') {
+            setValidationError('Bill type is mandatory.');
+            setSnackbar({
+                open: true,
+                severity: 'warning',
+                message: 'Bill type is mandatory.'
+            });
+            return;
+        }
+        if ((billType === 'WATER' || billType === 'ELECTRICITY' || billType === 'GAS') && index <= 0) {
+            setValidationError('Index must be greater than zero.');
+            setSnackbar({
+                open: true,
+                severity: 'warning',
+                message: 'Index must be greater than zero.'
+            });
+            return;
+        }
+        if ((billType === 'WATER' || billType === 'ELECTRICITY' || billType === 'GAS') && !index) {
+            setValidationError('Index is mandatory.');
+            setSnackbar({
+                open: true,
+                severity: 'warning',
+                message: 'Index is mandatory.'
+            });
+            return;
+        }
+        if (billType === 'OTHER' && (name === '' || !name)) {
+            setValidationError('Name is mandatory.');
+            setSnackbar({
+                open: true,
+                severity: 'warning',
+                message: 'Name is mandatory.'
+            });
+            return;
+        }
+        if (billType === 'OTHER' && (name === '' || name.length > 20)) {
+            setValidationError('Name should not exceed 20 characters.');
+            setSnackbar({
+                open: true,
+                severity: 'warning',
+                message: 'Name should not exceed 20 characters.'
+            });
+            return;
+        }
+        if ((billType === 'WATER' || billType === 'ELECTRICITY' || billType === 'GAS') && units <= 0) {
+            setValidationError('Units must be greater than zero.');
+            setSnackbar({
+                open: true,
+                severity: 'warning',
+                message: 'Units must be greater than zero.'
+            });
+            return;
+        }
+        if (!costPerUnit) {
+            setValidationError('Cost per unit is mandatory.');
+            setSnackbar({
+                open: true,
+                severity: 'warning',
+                message: 'Cost per unit is mandatory.'
+            });
+            return;
+        }
+        if (costPerUnit <= 0) {
+            setValidationError('Cost per unit must be greater than zero.');
+            setSnackbar({
+                open: true,
+                severity: 'warning',
+                message: 'Cost per unit must be greater than zero.'
+            });
+            return;
+        }
+        if (fromDate === '' || toDate === '' || issueDate === '' || dueDate === '') {
+            setValidationError('All dates are mandatory.');
+            setSnackbar({
+                open: true,
+                severity: 'warning',
+                message: 'All dates are mandatory.'
+            });
+            return;
+        }
+        if (new Date(issueDate) > currentDate) {
+            setValidationError('Issue date cannot be in the future.');
+            setSnackbar({
+                open: true,
+                severity: 'warning',
+                message: 'Issue date cannot be in the future.'
+            });
+            return;
+        }
+
+        setValidationError('');
 
         const bill = {
             billType: billType,
@@ -69,12 +165,13 @@ const BillForm = () => {
             setSnackbar({
                 open: true,
                 severity: 'error',
-                message: 'Error communicating with server '
+                message: 'Error communicating with server'
             });
         }
     };
 
     const handleBillTypeChange = (event) => {
+        setValidationError('')
         setBillType(event.target.value);
         switch (event.target.value) {
             case 'WATER':
@@ -117,7 +214,8 @@ const BillForm = () => {
                 <form id={'billForm'} onSubmit={handleSubmit}>
                     <label htmlFor="billType">Bill Type</label>
 
-                    <select id="billType" name="billType" onChange={handleBillTypeChange}>
+                    <select id="billType" name="billType" onChange={handleBillTypeChange}
+                            className={validationError.includes('Bill type') ? "validation-error" : ""}>
                         <option disabled selected value>
                             -- select type --
                         </option>
@@ -140,6 +238,7 @@ const BillForm = () => {
                                 name="name"
                                 value={name}
                                 onChange={(event) => setName(event.target.value)}
+                                className={validationError.includes('Name') ? "validation-error" : ""}
                             />
                         </>
                     ) : (
@@ -151,19 +250,15 @@ const BillForm = () => {
                                 name="index"
                                 value={index}
                                 onChange={(event) => setIndex(parseInt(event.target.value))}
-                                disabled={
-                                    billType === 'SANITATION' ||
-                                    billType === 'RENT' ||
-                                    billType === 'INTERNET' ||
-                                    billType === 'PHONE' ||
-                                    billType === 'OTHER'
-                                }
+                                disabled={billType === 'SANITATION' || billType === 'RENT' || billType === 'INTERNET' || billType === 'PHONE' || billType === 'OTHER'}
+                                className={validationError.includes('Index') ? "validation-error" : ""}
                             />
                         </>
                     )}
 
                     <label htmlFor="unitsOfMeasurement">Unit of Measurement</label>
-                    <input type="text" id="unitsOfMeasurement" name="unitsOfMeasurement" value={unitsOfMeasurement} disabled={true} />
+                    <input type="text" id="unitsOfMeasurement" name="unitsOfMeasurement" value={unitsOfMeasurement}
+                           disabled={true}/>
 
                     <label htmlFor="units">Units</label>
                     <input
@@ -179,15 +274,18 @@ const BillForm = () => {
                             billType === 'PHONE' ||
                             billType === 'OTHER'
                         }
+                        className={validationError.includes('Units') ? "validation-error" : ""}
                     />
 
-                    <label htmlFor="costPerUnit">Cost Per Unit{billType === 'SANITATION' || billType === 'RENT' || billType === 'INTERNET' || billType === 'PHONE' || billType === 'OTHER' ? ' (price)' : ''}</label>
+                    <label htmlFor="costPerUnit">Cost Per
+                        Unit{billType === 'SANITATION' || billType === 'RENT' || billType === 'INTERNET' || billType === 'PHONE' || billType === 'OTHER' ? ' (price)' : ''}</label>
                     <input
                         type="number"
                         id="costPerUnit"
                         name="costPerUnit"
                         value={costPerUnit}
                         onChange={(event) => setCostPerUnit(event.target.value)}
+                        className={validationError.includes('Cost per unit') ? "validation-error" : ""}
                     />
 
                     <label htmlFor="fromDate">From Date</label>
@@ -203,16 +301,29 @@ const BillForm = () => {
                             const toDateString = toDateObj.toISOString().slice(0, 10);
                             setToDate(toDateString);
                         }}
+                        className={validationError.includes('All dates') ? "validation-error" : ""}
                     />
 
                     <label htmlFor="toDate">To Date</label>
-                    <input type="date" id="toDate" name="toDate" value={toDate} onChange={(event) => setToDate(event.target.value)} />
+                    <input type="date" id="toDate" name="toDate" value={toDate}
+                           onChange={(event) => setToDate(event.target.value)}
+                           className={validationError.includes('All dates') ? "validation-error" : ""}/>
 
                     <label htmlFor="issueDate">Issue Date</label>
-                    <input type="date" id="issueDate" name="issueDate" value={issueDate} onChange={(event) => setIssueDate(event.target.value)} />
+                    <input
+                        type="date"
+                        id="issueDate"
+                        name="issueDate"
+                        value={issueDate}
+                        onChange={(event) => setIssueDate(event.target.value)}
+                        className={validationError.includes('All dates') || validationError.includes('Issue date') ? "validation-error" : ""}
+                    />
 
                     <label htmlFor="dueDate">Due Date</label>
-                    <input type="date" id="dueDate" name="dueDate" value={dueDate} onChange={(event) => setDueDate(event.target.value)} />
+                    <input type="date" id="dueDate" name="dueDate" value={dueDate}
+                           onChange={(event) => setDueDate(event.target.value)}
+                           className={validationError.includes('All dates') ? "validation-error" : ""}
+                    />
 
                     <label htmlFor="paid">Paid</label>
                     <select id="paid" name="paid" onChange={(event) => setPaid(event.target.value === 'true')}>
@@ -220,10 +331,11 @@ const BillForm = () => {
                         <option value={true}>Yes</option>
                     </select>
 
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit"/>
                 </form>
             </div>
-            <CustomSnackbar open={snackbar.open} severity={snackbar.severity} message={snackbar.message} onClose={handleSnackbarClose} />
+            <CustomSnackbar open={snackbar.open} severity={snackbar.severity} message={snackbar.message}
+                            onClose={handleSnackbarClose}/>
         </>
     );
 };
