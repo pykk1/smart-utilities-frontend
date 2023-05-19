@@ -1,0 +1,29 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button, .pagination .elipses {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #f2f2f2;
+    color: #000;
+    cursor: pointer;
+}
+
+.pagination .active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination button[disabled], .pagination .elipses.disabled {
+    background-color: #ddd;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.pagination button:not(.active):hover {
+    background-color: #ddd;
+}
