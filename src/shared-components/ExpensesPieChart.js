@@ -1,15 +1,16 @@
 import {Cell, Legend, Pie, PieChart, Tooltip} from 'recharts';
+
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A6CEE3', '#FF00FF', '#FF6F00', '#00FF00', '#FF0000', '#FFFF00'];
 
 const renderLabel = ({value}) => `${value.toFixed(2)} RON`;
 
-const BillsPieChart = ({bills}) => {
-    const dataMap = bills.reduce((map, bill) => {
-        const {billType, price} = bill;
-        if (map.has(billType)) {
-            map.set(billType, map.get(billType) + price);
+const ExpensesPieChart = ({expenses}) => {
+    const dataMap = expenses.reduce((map, expense) => {
+        const {expenseType, price} = expense;
+        if (map.has(expenseType)) {
+            map.set(expenseType, map.get(expenseType) + price);
         } else {
-            map.set(billType, price);
+            map.set(expenseType, price);
         }
         return map;
     }, new Map());
@@ -19,7 +20,7 @@ const BillsPieChart = ({bills}) => {
 
     return (
         <>
-            <h2>Bills current costs: {roundedPrices.toFixed(2)} RON</h2>
+            <h2>Expenses current costs: {roundedPrices.toFixed(2)} RON</h2>
             <PieChart width={500} height={350}>
                 <Pie
                     dataKey="value"
@@ -42,4 +43,4 @@ const BillsPieChart = ({bills}) => {
     );
 };
 
-export default BillsPieChart;
+export default ExpensesPieChart;

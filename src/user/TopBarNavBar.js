@@ -29,6 +29,7 @@ const TopBarNavBar = () => {
                     <li onClick={() => handleItemClick("/other")}>Other</li>
 
                     <li onClick={() => handleItemClick("/expense")}>Add Expense</li>
+                    <li onClick={() => handleItemClick("/expenses")}>Expenses</li>
 
                     <li className="logout" onClick={() => handleItemClick("/logout")}>Logout</li>
 

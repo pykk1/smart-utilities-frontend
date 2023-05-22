@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import React, {useEffect, useState} from 'react';
+import {Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-const getMonthlyTotals = (bills, year) => {
-    let totals = Array.from({ length: 12 }, (_, i) => ({
+const getMonthlyTotals = (expenses, year) => {
+    let totals = Array.from({length: 12}, (_, i) => ({
         name: MONTH_NAMES[i],
         value: 0
     }));
 
-    bills.forEach(bill => {
-        const date = new Date(bill.issueDate);
+    expenses.forEach(expense => {
+        const date = new Date(expense.date);
         if (date.getFullYear() === year) {
             const month = date.getMonth();
-            totals[month].value += bill.price;
+            totals[month].value += expense.price;
         }
     });
 
     return totals;
 };
 
-const BillsBarChart = ({ bills }) => {
+const ExpensesBarChart = ({expenses}) => {
     const currentYear = new Date().getFullYear();
     const [selectedYear, setSelectedYear] = useState(currentYear);
     const [data, setData] = useState([]);
@@ -28,19 +28,19 @@ const BillsBarChart = ({ bills }) => {
 
     const generateData = () => {
         setLoading(true);
-        const monthlyTotals = getMonthlyTotals(bills, selectedYear);
+        const monthlyTotals = getMonthlyTotals(expenses, selectedYear);
         setData(monthlyTotals);
         setLoading(false);
     };
 
     useEffect(() => {
         generateData();
-    }, [bills, selectedYear]);
+    }, [expenses, selectedYear]);
 
     return (
         <>
-            <h2>Bills costs over time</h2>
-            <div className="year-input-bills">
+            <h2>Expenses costs over time</h2>
+            <div className="year-input">
                 <label htmlFor="year">Year:</label>
                 <input
                     type="number"
@@ -64,11 +64,11 @@ const BillsBarChart = ({ bills }) => {
                             bottom: 5,
                         }}
                     >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip formatter={(value) => [`${value.toFixed(2)} RON`]} />
-                        <Bar dataKey="value" fill="#8884d8" />
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="name"/>
+                        <YAxis/>
+                        <Tooltip formatter={(value) => [`${value.toFixed(2)} RON`]}/>
+                        <Bar dataKey="value" fill="#8884d8"/>
                     </BarChart>
                 </ResponsiveContainer>
             )}
@@ -76,7 +76,4 @@ const BillsBarChart = ({ bills }) => {
     );
 };
 
-
-
-
-export default BillsBarChart;
+export default ExpensesBarChart;

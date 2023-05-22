@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
-import BillTable from "./BillTable";
-import {authFetch} from "../shared-components/Functions";
-import CustomSnackbar from "../shared-components/CustomSnackbar";
-import BillsPieChart from "../shared-components/BillsPieChart";
-import BillsBarChart from "../shared-components/BillsBarChart";
+import CustomSnackbar from "../../shared-components/CustomSnackbar";
+import {authFetch} from "../../shared-components/Functions";
+import ExpensesTable from "./ExpensesTable";
+import ExpensesPieChart from "../../shared-components/ExpensesPieChart";
+import ExpensesBarChart from "../../shared-components/ExpensesBarChart";
 
-const BillsDashboard = () => {
-    const [bills, setBills] = useState([]);
+const ExpensesOverview = ({historical}) => {
+    const [expenses, setExpenses] = useState([]);
     const token = sessionStorage.getItem('token');
-    const [paid, setPaid] = useState(false);
+    const [paid, setPaid] = useState(historical);
 
     const [snackbar, setSnackbar] = React.useState({
         open: false,
@@ -26,7 +26,7 @@ const BillsDashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await authFetch(`http://localhost:8080/api/bills/all?paid=${paid}`, {
+                const response = await authFetch(`http://localhost:8080/api/expenses/all?paid=${paid}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const BillsDashboard = () => {
 
                 if (response.ok) {
                     const data = await response.json();
-                    setBills(data);
+                    setExpenses(data);
                 }
             } catch (error) {
                 setSnackbar({
@@ -59,7 +59,7 @@ const BillsDashboard = () => {
     return (
         <>
             <div id="table-container">
-                <h1 id="table-container-title">Unpaid bills</h1>
+                <h1 id="table-container-title">{paid ? 'Expenses History' : 'Unpaid Expenses'}</h1>
                 <div className="checkbox-container">
                     <input
                         type="checkbox"
@@ -72,10 +72,16 @@ const BillsDashboard = () => {
                         Show Paid
                     </label>
                 </div>
-                <BillTable bills={bills}/>
+                <ExpensesTable expenses={expenses} setExpenses={setExpenses}/>
             </div>
-            <BillsPieChart bills={bills}/>
-            <BillsBarChart bills={bills}/>
+            <div className="chart-container">
+                <div className="chart-item">
+                    <ExpensesPieChart expenses={expenses}/>
+                </div>
+                <div className="chart-item">
+                    <ExpensesBarChart expenses={expenses}/>
+                </div>
+            </div>
             <CustomSnackbar
                 open={snackbar.open}
                 severity={snackbar.severity}
@@ -86,4 +92,4 @@ const BillsDashboard = () => {
     );
 };
 
-export default BillsDashboard;
+export default ExpensesOverview;

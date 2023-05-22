@@ -2,11 +2,15 @@ import React, {useEffect, useState} from "react";
 import BillTable from "./BillTable";
 import {authFetch} from "../shared-components/Functions";
 import CustomSnackbar from "../shared-components/CustomSnackbar";
+import BillsPieChart from "../shared-components/BillsPieChart";
+import BillsBarChart from "../shared-components/BillsBarChart";
+import '../shared-components/style/Chart.css';
 
-const BillsList = ({billType}) => {
+
+const BillsOverview = () => {
     const [bills, setBills] = useState([]);
     const token = sessionStorage.getItem('token');
-    const [paid, setPaid] = useState(true);
+    const [paid, setPaid] = useState(false);
 
     const [snackbar, setSnackbar] = React.useState({
         open: false,
@@ -24,7 +28,7 @@ const BillsList = ({billType}) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await authFetch(`http://localhost:8080/api/bills?billType=${billType}&paid=${paid}`, {
+                const response = await authFetch(`http://localhost:8080/api/bills/all?paid=${paid}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -48,7 +52,7 @@ const BillsList = ({billType}) => {
         };
 
         fetchData();
-    }, [billType, paid]);
+    }, [paid]);
 
     const handleCheckboxChange = () => {
         setPaid(!paid);
@@ -57,9 +61,7 @@ const BillsList = ({billType}) => {
     return (
         <>
             <div id="table-container">
-                <h1 id="table-container-title">
-                    {paid ? `${billType} Bills History` : `Unpaid ${billType} Bills`}
-                </h1>
+                <h1 id="table-container-title">{paid ? 'Bills History' : 'Unpaid Bills'}</h1>
                 <div className="checkbox-container">
                     <input
                         type="checkbox"
@@ -74,6 +76,15 @@ const BillsList = ({billType}) => {
                 </div>
                 <BillTable bills={bills} setBills={setBills}/>
             </div>
+            <div className="chart-container">
+                <div className="chart-item">
+                    <BillsBarChart bills={bills}/>
+
+                </div>
+                <div className="chart-item">
+                    <BillsPieChart bills={bills}/>
+                </div>
+            </div>
             <CustomSnackbar
                 open={snackbar.open}
                 severity={snackbar.severity}
@@ -84,4 +95,4 @@ const BillsList = ({billType}) => {
     );
 };
 
-export default BillsList;
+export default BillsOverview;

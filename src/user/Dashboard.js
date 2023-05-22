@@ -1,12 +1,14 @@
 import React from 'react';
 import TopBarNavBar from "./TopBarNavBar";
-import BillsDashboard from "./BillsDashboard";
+import BillsOverview from "./BillsOverview";
+import ExpensesOverview from "./expenses/ExpensesOverview";
 
 const Dashboard = () => {
     return (
         <div className="container">
             <TopBarNavBar/>
-            <BillsDashboard/>
+            <BillsOverview/>
+            <ExpensesOverview historical={false}/>
         </div>
     );
 };

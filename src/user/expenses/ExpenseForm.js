@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {authFetch} from "../shared-components/Functions";
-import CustomSnackbar from "../shared-components/CustomSnackbar";
-import './style/ExpenseForm.css';
+import {authFetch} from "../../shared-components/Functions";
+import CustomSnackbar from "../../shared-components/CustomSnackbar";
+import '../style/ExpenseForm.css';
 
 const ExpenseForm = () => {
     const token = sessionStorage.getItem('token');
@@ -133,6 +133,18 @@ const ExpenseForm = () => {
             return;
         }
 
+        const invalidFilename = attachments.some(
+            (attachment) => attachment.name.length > 200
+        );
+        if (invalidFilename) {
+            setSnackbar({
+                open: true,
+                severity: 'error',
+                message: 'Attachment name should be less than 200 characters',
+            });
+            return;
+        }
+
         const currentDate = new Date();
         const selectedDate = new Date(date);
 
@@ -145,7 +157,6 @@ const ExpenseForm = () => {
             });
             return;
         }
-
 
         setLoading(true);
 
