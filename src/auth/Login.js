@@ -46,7 +46,7 @@ function Login() {
                 const userRole = decoded.authorities;
 
                 if (userRole === 'ADMIN') {
-                    window.location.href = '/admin';
+                    window.location.href = '/admin/register';
                 } else {
                     window.location.href = '/';
                 }
@@ -70,6 +70,14 @@ function Login() {
         }
     };
 
+    const handleRegister = () => {
+        setSnackbar({
+            open: true,
+            severity: 'error',
+            message: 'Register disabled'
+        });
+    };
+
     return (
         <>
             <div id="auth-container">
@@ -85,7 +93,7 @@ function Login() {
                     </label>
                     <input type="submit" value="Submit"/>
                     <input className={"register-button"} type="button" value="Register" onClick={() => {
-                        window.location.href = "/register";
+                        handleRegister();
                     }}/>
                 </form>
             </div>

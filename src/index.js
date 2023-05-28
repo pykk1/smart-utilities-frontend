@@ -6,9 +6,8 @@ import Login from "./auth/Login";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Dashboard from "./user/Dashboard";
 import Customers from "./admin/Customers";
-import Register from "./auth/Register";
+import AdminRegister from "./admin/AdminRegister";
 import AdminDashboard from "./admin/AdminDashboard";
-import AdminBillsCreation from "./admin/AdminBillCreation";
 import BillCreation from "./user/BillCreation";
 import WaterView from "./user/bill-views/WaterView";
 import ElectricityView from "./user/bill-views/ElectricityView";
@@ -22,6 +21,8 @@ import PhoneView from "./user/bill-views/PhoneView";
 import OtherView from "./user/bill-views/OtherView";
 import ExpenseCreation from "./user/expenses/ExpenseCreation";
 import ExpensesView from "./user/expenses/ExpensesView";
+import AdminBills from "./admin/AdminBills";
+import AdminExpenses from "./admin/AdminExpenses";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -30,15 +31,14 @@ root.render(
         <Router>
             <Routes>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/register" element={<Register/>}/>
+                <Route path="/logout" element={<PrivateRoute isAdminRoute={false}><Logout/></PrivateRoute>}/>
 
-                <Route path="/logout" element={<PrivateRoute isAdminRoute={false}><Logout /></PrivateRoute>} />
-
-                <Route path="/admin" element={<PrivateRoute isAdminRoute={true}><AdminDashboard/></PrivateRoute>}/>
                 <Route path="/admin/customer" element={<PrivateRoute isAdminRoute={true}><Customers/></PrivateRoute>}/>
-                <Route path="/admin/bill"
-                       element={<PrivateRoute isAdminRoute={true}><AdminBillsCreation/></PrivateRoute>}/>
-
+                <Route path="/admin/bills"
+                       element={<PrivateRoute isAdminRoute={true}><AdminBills/></PrivateRoute>}/>
+                <Route path="/admin/expenses"
+                       element={<PrivateRoute isAdminRoute={true}><AdminExpenses/></PrivateRoute>}/>
+                <Route path="/admin/register" element={<PrivateRoute isAdminRoute={true}><AdminRegister/></PrivateRoute>}/>
 
                 <Route path="/" element={<PrivateRoute isAdminRoute={false}><Dashboard/></PrivateRoute>}/>
                 <Route path="/bill" element={<PrivateRoute isAdminRoute={false}><BillCreation/></PrivateRoute>}/>
@@ -46,7 +46,8 @@ root.render(
                 <Route path="/electricity"
                        element={<PrivateRoute isAdminRoute={false}><ElectricityView/></PrivateRoute>}/>
                 <Route path="/gas" element={<PrivateRoute isAdminRoute={false}><GasView/></PrivateRoute>}/>
-                <Route path="/sanitation" element={<PrivateRoute isAdminRoute={false}><SanitationView/></PrivateRoute>}/>
+                <Route path="/sanitation"
+                       element={<PrivateRoute isAdminRoute={false}><SanitationView/></PrivateRoute>}/>
                 <Route path="/rent" element={<PrivateRoute isAdminRoute={false}><RentView/></PrivateRoute>}/>
                 <Route path="/internet" element={<PrivateRoute isAdminRoute={false}><InternetView/></PrivateRoute>}/>
                 <Route path="/phone" element={<PrivateRoute isAdminRoute={false}><PhoneView/></PrivateRoute>}/>

@@ -1,18 +1,13 @@
-import '../shared-components/style/Bill.css';
-import React from 'react';
-import AdminBillForm from "./AdminBillForm";
 import AdminTopBarNavBar from "./AdminTopBarNavBar";
 import AdminBillsList from "./AdminBillsList";
+import React from "react";
 
-
-const AdminBillCreation = () => {
+const AdminBills = () => {
     return (
         <div className="container">
             <AdminTopBarNavBar/>
-                <AdminBillForm/>
             <AdminBillsList/>
         </div>
     );
 }
-
-export default AdminBillCreation;
+export default AdminBills;

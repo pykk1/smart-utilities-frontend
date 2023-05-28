@@ -23,14 +23,6 @@ const BillTable = ({bills, setBills}) => {
         severity: '',
         message: ''
     });
-
-    const handleSnackbarClose = () => {
-        setSnackbar({
-            ...snackbar,
-            open: false
-        });
-    };
-
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
         const halfPageRange = Math.floor(pageRange / 2);
@@ -77,10 +69,10 @@ const BillTable = ({bills, setBills}) => {
                     <th>Paid</th>
                     <th>Units</th>
                     <th>Cost Per Unit</th>
+                    <th>Due Date</th>
+                    <th>Issue Date</th>
                     <th>From Date</th>
                     <th>To Date</th>
-                    <th>Issue Date</th>
-                    <th>Due Date</th>
                     <th>Index</th>
                 </tr>
                 </thead>
@@ -99,10 +91,10 @@ const BillTable = ({bills, setBills}) => {
                         </td>
                         <td>{bill.units}</td>
                         <td>{bill.costPerUnit}</td>
+                        <td>{formatDate(bill.dueDate)}</td>
+                        <td>{formatDate(bill.issueDate)}</td>
                         <td>{formatDate(bill.fromDate)}</td>
                         <td>{formatDate(bill.toDate)}</td>
-                        <td>{formatDate(bill.issueDate)}</td>
-                        <td>{formatDate(bill.dueDate)}</td>
                         <td>{bill.index !== null ? bill.index : 'N/A'}</td>
                     </tr>
                 ))}

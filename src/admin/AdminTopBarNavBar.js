@@ -16,12 +16,13 @@ const AdminTopBarNavBar = () => {
                 <div className="topbar-text">Logged in as: {username}</div>
             </div>
             <nav>
-                <ul>
-                    <li onClick={() => handleItemClick("/admin")}>Home</li>
-                    <li onClick={() => handleItemClick("/admin/customer")}>Customers</li>
-                    <li onClick={() => handleItemClick("/admin/bill")}>Bills</li>
-                    <li className="logout" onClick={() => handleItemClick("/login")}>Logout</li>
+                <ul className="mainmenu">
+                    <li onClick={() => handleItemClick("/admin/register")}><a>Register</a></li>
+                    <li onClick={() => handleItemClick("/admin/customer")}><a>Customers</a></li>
+                    <li onClick={() => handleItemClick("/admin/bills")}><a>Bills</a></li>
+                    <li onClick={() => handleItemClick("/admin/expenses")}><a>Expenses</a></li>
                 </ul>
+                <li className="logout" onClick={() => handleItemClick("/login")}><a>Logout</a></li>
             </nav>
         </div>
     );

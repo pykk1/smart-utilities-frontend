@@ -29,29 +29,33 @@ const AdminBillTable = ({bills}) => {
                 <thead>
                 <tr>
                     <th>Bill Type</th>
+                    <th>Price</th>
+                    <th>Paid</th>
                     <th>Units</th>
                     <th>Cost Per Unit</th>
+                    <th>Due Date</th>
+                    <th>Issue Date</th>
                     <th>From Date</th>
                     <th>To Date</th>
-                    <th>Issue Date</th>
-                    <th>Due Date</th>
                     <th>Index</th>
-                    <th>Paid</th>
                     <th>Client Code</th>
                 </tr>
                 </thead>
                 <tbody>
                 {currentBills.map((bill, index) => (
                     <tr key={index}>
-                        <td>{bill.billType}</td>
+                        <td>{bill.billType === 'Other' ? `Other(${bill.name})` : bill.billType}</td>
+                        <td>{bill.price}</td>
+                        <td>
+                            <span>{bill.paid ? 'Yes' : 'No  '}  </span>
+                        </td>
                         <td>{bill.units}</td>
                         <td>{bill.costPerUnit}</td>
+                        <td>{formatDate(bill.dueDate)}</td>
+                        <td>{formatDate(bill.issueDate)}</td>
                         <td>{formatDate(bill.fromDate)}</td>
                         <td>{formatDate(bill.toDate)}</td>
-                        <td>{formatDate(bill.issueDate)}</td>
-                        <td>{formatDate(bill.dueDate)}</td>
-                        <td>{bill.index}</td>
-                        <td>{bill.paid ? 'Yes' : 'No'}</td>
+                        <td>{bill.index !== null ? bill.index : 'N/A'}</td>
                         <td>{bill.clientCode}</td>
                     </tr>
                 ))}

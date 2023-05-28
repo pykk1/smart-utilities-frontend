@@ -32,7 +32,7 @@ function Register() {
 
         if (password === repeatedPassword) {
             try {
-                const response = await fetch('http://localhost:8080/api/auth/register', {
+                const response = await fetch('http://localhost:8080/api/auth/admin/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -41,8 +41,11 @@ function Register() {
                 });
 
                 if (response.ok) {
-                    alert('User registered successfully');
-                    window.location.href = '/login';
+                    setSnackbar({
+                        open: true,
+                        severity: 'success',
+                        message: 'Success !'
+                    });
                 } else {
                     throw new Error('Error when registering user');
                 }
