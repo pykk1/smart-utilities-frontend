@@ -21,24 +21,26 @@ const ExpensesPieChart = ({expenses}) => {
     return (
         <>
             <h2>Expenses current costs: {roundedPrices.toFixed(2)} RON</h2>
-            <PieChart width={500} height={350}>
-                <Pie
-                    dataKey="value"
-                    isAnimationActive={false}
-                    data={data}
-                    cx={200}
-                    cy={200}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    label={renderLabel}
-                >
-                    {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
-                    ))}
-                </Pie>
-                <Tooltip formatter={(value) => [`${value.toFixed(2)} RON`]}/>
-                <Legend/>
-            </PieChart>
+            <div className="pie-chart-container">
+                <PieChart width={500} height={350}>
+                    <Pie
+                        dataKey="value"
+                        isAnimationActive={false}
+                        data={data}
+                        cx={200}
+                        cy={200}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        label={renderLabel}
+                    >
+                        {data.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                    </Pie>
+                    <Tooltip formatter={(value) => [`${value.toFixed(2)} RON`]} />
+                    <Legend />
+                </PieChart>
+            </div>
         </>
     );
 };

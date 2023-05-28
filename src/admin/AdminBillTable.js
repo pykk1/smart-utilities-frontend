@@ -36,7 +36,6 @@ const AdminBillTable = ({bills}) => {
                     <th>Issue Date</th>
                     <th>Due Date</th>
                     <th>Index</th>
-                    {/*<th>User Index</th>*/}
                     <th>Paid</th>
                     <th>Client Code</th>
                 </tr>
@@ -52,7 +51,6 @@ const AdminBillTable = ({bills}) => {
                         <td>{formatDate(bill.issueDate)}</td>
                         <td>{formatDate(bill.dueDate)}</td>
                         <td>{bill.index}</td>
-                        {/*<td>{bill.userIndex}</td>*/}
                         <td>{bill.paid ? 'Yes' : 'No'}</td>
                         <td>{bill.clientCode}</td>
                     </tr>

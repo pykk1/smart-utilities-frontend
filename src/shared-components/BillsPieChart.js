@@ -20,6 +20,7 @@ const BillsPieChart = ({bills}) => {
     return (
         <>
             <h2>Bills current costs: {roundedPrices.toFixed(2)} RON</h2>
+            <div className="pie-chart-container">
             <PieChart width={500} height={350}>
                 <Pie
                     dataKey="value"
@@ -38,6 +39,7 @@ const BillsPieChart = ({bills}) => {
                 <Tooltip formatter={(value) => [`${value.toFixed(2)} RON`]}/>
                 <Legend/>
             </PieChart>
+            </div>
         </>
     );
 };

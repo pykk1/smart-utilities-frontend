@@ -2,13 +2,11 @@
     position: relative;
     left: 8%;
     max-width: 85%;
-    /*left: 4%;*/
-    /*max-width: 93%;*/
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     height: auto;
     padding: 1em;
@@ -57,4 +55,6 @@
     max-width: 600px;
 }
 
-
+.pie-chart-container {
+    margin-left: 60px;
+}

@@ -2,7 +2,6 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    /*font-family: Lucida Console;*/
     background-color: #e7e2e2;
     min-height: 100vh;
     overflow-y: auto;
@@ -39,11 +38,13 @@ body, html {
 nav {
     background-color: #333;
     color: #fff;
-    width: 100px;
+    width: 120px;
     position: fixed;
     bottom: 0;
     left: 0;
     top: 5vh;
+    display: flex;
+    flex-direction: column;
 }
 
 nav ul {
@@ -52,26 +53,86 @@ nav ul {
     margin: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    height: calc(100vh - 50px);
 }
 
 nav li {
-    padding: 10px;
     cursor: pointer;
+    width: 100%;
 }
 
 nav a {
     color: #fff;
     text-decoration: none;
+    display: block;
+    padding: 10px;
+    font-size: 18px;
 }
 
-nav li:hover {
+nav > ul > li > a:hover,
+nav ul.submenu li > a:hover,
+.logout a:hover {
     background-color: #646363;
+}
+
+nav > ul > li > a {
+    font-size: 19px;
+}
+
+nav ul.submenu li > a {
+    font-size: 16px;
+}
+
+nav ul.submenu {
+    display: none;
+    flex-direction: column;
+    padding-left: 0;
+}
+
+nav ul.mainmenu li.open > ul.submenu {
+    display: flex;
+}
+
+nav ul.submenu li {
+    cursor: pointer;
+    width: 100%;
+    padding-left: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+}
+
+nav ul.submenu li:before {
+    content: "•";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 5px;
 }
 
 .logout {
     margin-top: auto;
     padding-top: 10px;
+    list-style-type: none;
 }
 
+.arrow {
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 2px;
+    transition: transform 0.5s;
+}
+
+.arrow.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.arrow.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}

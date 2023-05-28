@@ -1,13 +1,22 @@
+import React, {useState} from 'react';
 import jwt_decode from "jwt-decode";
-import React from "react";
 import '../shared-components/style/Navbar.css';
 
 const TopBarNavBar = () => {
     const token = sessionStorage.getItem('token');
     const username = jwt_decode(token).username;
+    const [openMenu, setOpenMenu] = useState('');
 
-    const handleItemClick = (path) => {
+    const handleItemClick = (path, event) => {
+        event.stopPropagation();
         window.location.href = path;
+    };
+
+    const handleMenuClick = (menu, event) => {
+        event.stopPropagation();
+        setOpenMenu(prevMenu => {
+            return prevMenu.includes(menu) ? prevMenu.filter(item => item !== menu) : [...prevMenu, menu];
+        });
     };
 
     return (
@@ -16,24 +25,31 @@ const TopBarNavBar = () => {
                 <div className="topbar-text">Logged in as: {username}</div>
             </div>
             <nav>
-                <ul>
-                    <li onClick={() => handleItemClick("/")}>Home</li>
-                    <li onClick={() => handleItemClick("/bill")}>Add Bill</li>
-                    <li onClick={() => handleItemClick("/water")}>Water</li>
-                    <li onClick={() => handleItemClick("/electricity")}>Electricity</li>
-                    <li onClick={() => handleItemClick("/gas")}>Gas</li>
-                    <li onClick={() => handleItemClick("/sanitation")}>Sanitation</li>
-                    <li onClick={() => handleItemClick("/rent")}>Rent</li>
-                    <li onClick={() => handleItemClick("/internet")}>Internet</li>
-                    <li onClick={() => handleItemClick("/phone")}>Phone</li>
-                    <li onClick={() => handleItemClick("/other")}>Other</li>
-
-                    <li onClick={() => handleItemClick("/expense")}>Add Expense</li>
-                    <li onClick={() => handleItemClick("/expenses")}>Expenses</li>
-
-                    <li className="logout" onClick={() => handleItemClick("/logout")}>Logout</li>
-
+                <ul className="mainmenu">
+                    <li onClick={(event) => handleItemClick("/", event)}><a>Dashboard</a></li>
+                    <li className={openMenu.includes('bills') ? 'open' : ''} onClick={(event) => handleMenuClick('bills', event)}>
+                        <a>Bills <div className={`arrow ${openMenu.includes('bills') ? 'up' : 'down'}`}/></a>
+                        <ul className="submenu">
+                            <li onClick={(event) => handleItemClick("/bill", event)}><a>Create New</a></li>
+                            <li onClick={(event) => handleItemClick("/water", event)}><a>Water</a></li>
+                            <li onClick={(event) => handleItemClick("/electricity", event)}><a>Electricity</a></li>
+                            <li onClick={(event) => handleItemClick("/gas", event)}><a>Gas</a></li>
+                            <li onClick={(event) => handleItemClick("/sanitation", event)}><a>Sanitation</a></li>
+                            <li onClick={(event) => handleItemClick("/rent", event)}><a>Rent</a></li>
+                            <li onClick={(event) => handleItemClick("/internet", event)}><a>Internet</a></li>
+                            <li onClick={(event) => handleItemClick("/phone", event)}><a>Phone</a></li>
+                            <li onClick={(event) => handleItemClick("/other", event)}><a>Other</a></li>
+                        </ul>
+                    </li>
+                    <li className={openMenu.includes('expenses') ? 'open' : ''} onClick={(event) => handleMenuClick('expenses', event)}>
+                        <a>Expenses <div className={`arrow ${openMenu.includes('expenses') ? 'up' : 'down'}`}/></a>
+                        <ul className="submenu">
+                            <li onClick={(event) => handleItemClick("/expense", event)}><a>Create New</a></li>
+                            <li onClick={(event) => handleItemClick("/expenses", event)}><a>History</a></li>
+                        </ul>
+                    </li>
                 </ul>
+                <li className="logout" onClick={(event) => handleItemClick("/logout", event)}><a>Logout</a></li>
             </nav>
         </>
     );
