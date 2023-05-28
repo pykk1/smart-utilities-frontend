@@ -34,11 +34,47 @@ const BillForm = () => {
         });
     };
 
+    const resetFields = () => {
+        setBillType('');
+        setUnitsOfMeasurement('');
+        setUnits(0);
+        setFromDate('');
+        setToDate('');
+        setIssueDate('');
+        setDueDate('');
+        setName('');
+        setPaid(false);
+        switch (billType) {
+            case 'WATER':
+            case 'ELECTRICITY':
+            case 'GAS':
+                setCostPerUnit(0);
+                setIndex(0);
+                break;
+            case 'SANITATION':
+            case 'RENT':
+            case 'INTERNET':
+            case 'PHONE':
+                setCostPerUnit('');
+                setUnits(1);
+                setIndex('');
+                break;
+            case 'OTHER':
+                setCostPerUnit('');
+                setUnits(1);
+                setIndex('');
+                break;
+            default:
+                setCostPerUnit(0);
+                setIndex(0);
+        }
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (billType === '') {
-            setValidationError('Bill type is mandatory.');
+            setValidationError('Bill type is mandatory');
             setSnackbar({
                 open: true,
                 severity: 'warning',
@@ -160,6 +196,7 @@ const BillForm = () => {
                     message: 'Success !'
                 });
                 await response.json();
+                resetFields();
             }
         } catch (error) {
             setSnackbar({
@@ -216,7 +253,7 @@ const BillForm = () => {
 
                     <select id="billType" name="billType" onChange={handleBillTypeChange}
                             className={validationError.includes('Bill type') ? "validation-error" : ""}>
-                        <option disabled selected value>
+                        <option disabled selected value="">
                             -- select type --
                         </option>
                         <option value="WATER">Water</option>
