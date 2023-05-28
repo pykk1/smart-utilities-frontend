@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import '../shared-components/style/Table.css';
 import UserPopup from './UserPopup';
 import Pagination from "../shared-components/Pagination";
 
-const CustomerTable = ({ users }) => {
+const CustomerTable = ({users}) => {
     const [selectedUser, setSelectedUser] = useState(null);
 
     const handleRowClick = (user) => {
@@ -56,7 +56,7 @@ const CustomerTable = ({ users }) => {
                 ))}
                 </tbody>
             </table>
-            {selectedUser && <UserPopup user={selectedUser} onClose={() => setSelectedUser(null)} />}
+            {selectedUser && <UserPopup user={selectedUser} onClose={() => setSelectedUser(null)}/>}
             <Pagination
                 currentPage={currentPage}
                 paginate={paginate}

@@ -34,11 +34,11 @@ const ExpensesPieChart = ({expenses}) => {
                         label={renderLabel}
                     >
                         {data.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
                         ))}
                     </Pie>
-                    <Tooltip formatter={(value) => [`${value.toFixed(2)} RON`]} />
-                    <Legend />
+                    <Tooltip formatter={(value) => [`${value.toFixed(2)} RON`]}/>
+                    <Legend/>
                 </PieChart>
             </div>
         </>

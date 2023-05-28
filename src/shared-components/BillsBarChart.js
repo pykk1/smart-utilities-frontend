@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import React, {useEffect, useState} from 'react';
+import {Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const getMonthlyTotals = (bills, year) => {
-    let totals = Array.from({ length: 12 }, (_, i) => ({
+    let totals = Array.from({length: 12}, (_, i) => ({
         name: MONTH_NAMES[i],
         value: 0
     }));
@@ -20,7 +20,7 @@ const getMonthlyTotals = (bills, year) => {
     return totals;
 };
 
-const BillsBarChart = ({ bills }) => {
+const BillsBarChart = ({bills}) => {
     const currentYear = new Date().getFullYear();
     const [selectedYear, setSelectedYear] = useState(currentYear);
     const [data, setData] = useState([]);
@@ -64,19 +64,17 @@ const BillsBarChart = ({ bills }) => {
                             bottom: 5,
                         }}
                     >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip formatter={(value) => [`${value.toFixed(2)} RON`]} />
-                        <Bar dataKey="value" fill="#8884d8" />
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="name"/>
+                        <YAxis/>
+                        <Tooltip formatter={(value) => [`${value.toFixed(2)} RON`]}/>
+                        <Bar dataKey="value" fill="#8884d8"/>
                     </BarChart>
                 </ResponsiveContainer>
             )}
         </>
     );
 };
-
-
 
 
 export default BillsBarChart;

@@ -7,7 +7,7 @@ const OtherView = () => {
     return (
         <div className="container">
             <TopBarNavBar/>
-                <BillsList billType={'Other'}/>
+            <BillsList billType={'Other'}/>
         </div>
     );
 }

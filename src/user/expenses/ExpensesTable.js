@@ -66,7 +66,10 @@ const ExpensesTable = ({expenses, setExpenses}) => {
                     severity: 'success',
                     message: 'Success !'
                 });
-                const updatedExpenses = expenses.map(expense => expense.id === expenseId ? {...expense, paid: !isPaid} : expense);
+                const updatedExpenses = expenses.map(expense => expense.id === expenseId ? {
+                    ...expense,
+                    paid: !isPaid
+                } : expense);
                 setExpenses(updatedExpenses);
             }
         } catch (error) {

@@ -7,7 +7,7 @@ const GasView = () => {
     return (
         <div className="container">
             <TopBarNavBar/>
-                <BillsList billType={'Gas'}/>
+            <BillsList billType={'Gas'}/>
         </div>
     );
 }

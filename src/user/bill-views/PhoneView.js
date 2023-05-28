@@ -7,7 +7,7 @@ const PhoneView = () => {
     return (
         <div className="container">
             <TopBarNavBar/>
-                <BillsList billType={'Phone'}/>
+            <BillsList billType={'Phone'}/>
         </div>
     );
 }

@@ -7,7 +7,7 @@ const ElectricityView = () => {
     return (
         <div className="container">
             <TopBarNavBar/>
-                <BillsList billType={'Electricity'}/>
+            <BillsList billType={'Electricity'}/>
         </div>
     );
 }

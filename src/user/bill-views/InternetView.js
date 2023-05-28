@@ -7,7 +7,7 @@ const InternetView = () => {
     return (
         <div className="container">
             <TopBarNavBar/>
-                <BillsList billType={'Internet'}/>
+            <BillsList billType={'Internet'}/>
         </div>
     );
 }

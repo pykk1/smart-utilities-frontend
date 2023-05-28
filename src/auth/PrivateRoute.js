@@ -26,7 +26,7 @@ const PrivateRoute = ({isAdminRoute, children}) => {
     }
 
     if (!isAdminRoute && isAdmin()) {
-        return <Navigate to="/admin"/>;
+        return <Navigate to="/admin/register"/>;
     }
 
     return children;

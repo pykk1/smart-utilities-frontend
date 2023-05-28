@@ -1,7 +1,7 @@
 import React from 'react';
 import './style/UserPopup.css';
 
-const UserPopup = ({ user, onClose }) => {
+const UserPopup = ({user, onClose}) => {
     return (
         <div className="user-popup">
             <div className="user-popup-content">

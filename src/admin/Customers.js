@@ -6,7 +6,7 @@ const Customers = () => {
     return (
         <div className="container">
             <AdminTopBarNavBar/>
-                <CustomersList/>
+            <CustomersList/>
         </div>
     );
 };

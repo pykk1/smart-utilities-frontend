@@ -22,7 +22,7 @@ const AdminTopBarNavBar = () => {
                     <li onClick={() => handleItemClick("/admin/bills")}><a>Bills</a></li>
                     <li onClick={() => handleItemClick("/admin/expenses")}><a>Expenses</a></li>
                 </ul>
-                <li className="logout" onClick={() => handleItemClick("/login")}><a>Logout</a></li>
+                <li className="logout" onClick={() => handleItemClick("/logout")}><a>Logout</a></li>
             </nav>
         </div>
     );

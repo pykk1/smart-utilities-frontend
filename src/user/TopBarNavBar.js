@@ -27,7 +27,8 @@ const TopBarNavBar = () => {
             <nav>
                 <ul className="mainmenu">
                     <li onClick={(event) => handleItemClick("/", event)}><a>Dashboard</a></li>
-                    <li className={openMenu.includes('bills') ? 'open' : ''} onClick={(event) => handleMenuClick('bills', event)}>
+                    <li className={openMenu.includes('bills') ? 'open' : ''}
+                        onClick={(event) => handleMenuClick('bills', event)}>
                         <a>Bills <div className={`arrow ${openMenu.includes('bills') ? 'up' : 'down'}`}/></a>
                         <ul className="submenu">
                             <li onClick={(event) => handleItemClick("/bill", event)}><a>Create New</a></li>
@@ -41,7 +42,8 @@ const TopBarNavBar = () => {
                             <li onClick={(event) => handleItemClick("/other", event)}><a>Other</a></li>
                         </ul>
                     </li>
-                    <li className={openMenu.includes('expenses') ? 'open' : ''} onClick={(event) => handleMenuClick('expenses', event)}>
+                    <li className={openMenu.includes('expenses') ? 'open' : ''}
+                        onClick={(event) => handleMenuClick('expenses', event)}>
                         <a>Expenses <div className={`arrow ${openMenu.includes('expenses') ? 'up' : 'down'}`}/></a>
                         <ul className="submenu">
                             <li onClick={(event) => handleItemClick("/expense", event)}><a>Create New</a></li>

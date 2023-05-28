@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../style/AttachmentsPopup.css';
 import {authFetch} from "../../shared-components/Functions";
 import CustomSnackbar from "../../shared-components/CustomSnackbar";

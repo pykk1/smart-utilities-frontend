@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Login from "./auth/Login";
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
 import Dashboard from "./user/Dashboard";
 import Customers from "./admin/Customers";
 import AdminRegister from "./admin/AdminRegister";
-import AdminDashboard from "./admin/AdminDashboard";
 import BillCreation from "./user/BillCreation";
 import WaterView from "./user/bill-views/WaterView";
 import ElectricityView from "./user/bill-views/ElectricityView";
@@ -31,15 +30,7 @@ root.render(
         <Router>
             <Routes>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/logout" element={<PrivateRoute isAdminRoute={false}><Logout/></PrivateRoute>}/>
-
-                <Route path="/admin/customer" element={<PrivateRoute isAdminRoute={true}><Customers/></PrivateRoute>}/>
-                <Route path="/admin/bills"
-                       element={<PrivateRoute isAdminRoute={true}><AdminBills/></PrivateRoute>}/>
-                <Route path="/admin/expenses"
-                       element={<PrivateRoute isAdminRoute={true}><AdminExpenses/></PrivateRoute>}/>
-                <Route path="/admin/register" element={<PrivateRoute isAdminRoute={true}><AdminRegister/></PrivateRoute>}/>
-
+                <Route path="/logout" element={<Logout/>}/>
                 <Route path="/" element={<PrivateRoute isAdminRoute={false}><Dashboard/></PrivateRoute>}/>
                 <Route path="/bill" element={<PrivateRoute isAdminRoute={false}><BillCreation/></PrivateRoute>}/>
                 <Route path="/water" element={<PrivateRoute isAdminRoute={false}><WaterView/></PrivateRoute>}/>
@@ -52,13 +43,23 @@ root.render(
                 <Route path="/internet" element={<PrivateRoute isAdminRoute={false}><InternetView/></PrivateRoute>}/>
                 <Route path="/phone" element={<PrivateRoute isAdminRoute={false}><PhoneView/></PrivateRoute>}/>
                 <Route path="/other" element={<PrivateRoute isAdminRoute={false}><OtherView/></PrivateRoute>}/>
-
-
                 <Route path="/expense" element={<PrivateRoute isAdminRoute={false}><ExpenseCreation/></PrivateRoute>}/>
                 <Route path="/expenses" element={<PrivateRoute isAdminRoute={false}><ExpensesView/></PrivateRoute>}/>
+                <Route path="*" element={<Navigate to="/"/>}/>
+
+                <Route path="/admin/*" element={<Routes>
+                    <Route path="/customer" element={<PrivateRoute isAdminRoute={true}><Customers/></PrivateRoute>}/>
+                    <Route path="/bills" element={<PrivateRoute isAdminRoute={true}><AdminBills/></PrivateRoute>}/>
+                    <Route path="/expenses"
+                           element={<PrivateRoute isAdminRoute={true}><AdminExpenses/></PrivateRoute>}/>
+                    <Route path="/register"
+                           element={<PrivateRoute isAdminRoute={true}><AdminRegister/></PrivateRoute>}/>
+                    <Route path="*" element={<Navigate to="/admin/register"/>}/>
+                </Routes>}/>
             </Routes>
         </Router>
     </React.StrictMode>,
 );
 
 reportWebVitals();
+

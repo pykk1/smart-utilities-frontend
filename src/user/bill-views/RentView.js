@@ -7,7 +7,7 @@ const RentView = () => {
     return (
         <div className="container">
             <TopBarNavBar/>
-                <BillsList billType={'Rent'}/>
+            <BillsList billType={'Rent'}/>
         </div>
     );
 }

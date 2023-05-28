@@ -2,7 +2,7 @@ import React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
-function CustomSnackbar({ open, severity, message, onClose }) {
+function CustomSnackbar({open, severity, message, onClose}) {
     const vertical = 'bottom';
     const horizontal = 'right';
 
@@ -11,8 +11,8 @@ function CustomSnackbar({ open, severity, message, onClose }) {
     });
 
     return (
-        <Snackbar anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={2000} onClose={onClose}>
-            <Alert severity={severity} sx={{ width: '100%' }}>
+        <Snackbar anchorOrigin={{vertical, horizontal}} open={open} autoHideDuration={2000} onClose={onClose}>
+            <Alert severity={severity} sx={{width: '100%'}}>
                 {message}
             </Alert>
         </Snackbar>
