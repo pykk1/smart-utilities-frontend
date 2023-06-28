@@ -38,7 +38,7 @@ const ExpenseForm = () => {
     useEffect(() => {
         const fetchExpenseTypes = async () => {
             try {
-                const response = await authFetch('http://localhost:8080/api/expenses/types', {
+                const response = await authFetch('{API_BASE_URL}/api/expenses/types', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -178,7 +178,7 @@ const ExpenseForm = () => {
         });
 
         try {
-            const response = await authFetch('http://localhost:8080/api/expense', {
+            const response = await authFetch('{API_BASE_URL}/api/expense', {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${token}`

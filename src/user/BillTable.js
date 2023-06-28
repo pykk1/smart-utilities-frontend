@@ -33,7 +33,7 @@ const BillTable = ({bills, setBills}) => {
 
     const handlePaymentStatusChange = async (billId, isPaid) => {
         try {
-            const response = await authFetch(`http://localhost:8080/api/bill/pay/${billId}`, {
+            const response = await authFetch(`{API_BASE_URL}/api/bill/pay/${billId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

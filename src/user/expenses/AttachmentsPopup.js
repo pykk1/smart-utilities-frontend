@@ -14,7 +14,7 @@ const AttachmentsPopup = ({attachments, expenseId, onClose}) => {
 
     const handleDownload = async (attachmentId, attachmentFileName) => {
         try {
-            const response = await authFetch(`http://localhost:8080/api/expense/attachment/${expenseId}/${attachmentId}`, {
+            const response = await authFetch(`{API_BASE_URL}/api/expense/attachment/${expenseId}/${attachmentId}`, {
                 headers: {
                     responseType: 'blob',
                     'Authorization': `Bearer ${token}`

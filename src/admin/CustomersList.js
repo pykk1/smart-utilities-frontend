@@ -24,7 +24,7 @@ const CustomersList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await authFetch('http://localhost:8080/api/admin/user', {
+                const response = await authFetch('{API_BASE_URL}/api/admin/user', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

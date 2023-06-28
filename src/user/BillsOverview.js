@@ -28,7 +28,7 @@ const BillsOverview = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await authFetch(`http://localhost:8080/api/bills/all?paid=${paid}`, {
+                const response = await authFetch(`{API_BASE_URL}/api/bills/all?paid=${paid}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

@@ -48,3 +48,5 @@ export const formatDate = (date) => {
 
     return `${formattedDate}, ${formattedTime}`;
 };
+
+export const API_BASE_URL = 'https://smart-utilities.azurewebsites.net';

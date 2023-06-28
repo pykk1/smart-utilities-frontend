@@ -180,7 +180,7 @@ const BillForm = () => {
         };
 
         try {
-            const response = await authFetch('http://localhost:8080/api/bill', {
+            const response = await authFetch('{API_BASE_URL}/api/bill', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

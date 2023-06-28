@@ -34,7 +34,7 @@ const AdminBillForm = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await authFetch('http://localhost:8080/api/admin/client-codes', {
+                const response = await authFetch('{API_BASE_URL}/api/admin/client-codes', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const AdminBillForm = () => {
         };
 
         try {
-            const response = await authFetch('http://localhost:8080/api/admin/bill', {
+            const response = await authFetch('{API_BASE_URL}/api/admin/bill', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
