@@ -17,7 +17,7 @@ const CustomerTable = ({users}) => {
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
-    const [pageRange, setPageRange] = useState(5);
+    const [pageRange] = useState(5);
     const [startIndex, setStartIndex] = useState(0);
 
     const paginate = (pageNumber) => {

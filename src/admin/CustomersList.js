@@ -47,7 +47,7 @@ const CustomersList = () => {
         };
 
         fetchData();
-    }, []);
+    }, [token]);
 
     return (
         <>

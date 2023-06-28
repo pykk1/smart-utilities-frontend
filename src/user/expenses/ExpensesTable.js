@@ -17,7 +17,7 @@ const ExpensesTable = ({expenses, setExpenses}) => {
     const indexOfFirstExpense = indexOfLastExpense - expensesPerPage;
 
     const currentExpenses = expenses.slice(indexOfFirstExpense, indexOfLastExpense);
-    const [pageRange, setPageRange] = useState(5);
+    const [pageRange] = useState(5);
     const [startIndex, setStartIndex] = useState(0);
 
     const [snackbar, setSnackbar] = useState({

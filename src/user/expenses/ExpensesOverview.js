@@ -50,7 +50,7 @@ const ExpensesOverview = ({historical}) => {
         };
 
         fetchData();
-    }, [paid]);
+    }, [paid, token]);
 
     const handleCheckboxChange = () => {
         setPaid(!paid);

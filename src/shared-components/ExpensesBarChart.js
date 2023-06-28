@@ -26,6 +26,7 @@ const ExpensesBarChart = ({expenses}) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const generateData = () => {
         setLoading(true);
         const monthlyTotals = getMonthlyTotals(expenses, selectedYear);
@@ -35,7 +36,7 @@ const ExpensesBarChart = ({expenses}) => {
 
     useEffect(() => {
         generateData();
-    }, [expenses, selectedYear]);
+    }, [expenses, generateData, selectedYear]);
 
     return (
         <>

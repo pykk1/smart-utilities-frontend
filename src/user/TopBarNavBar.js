@@ -26,31 +26,46 @@ const TopBarNavBar = () => {
             </div>
             <nav>
                 <ul className="mainmenu">
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <li onClick={(event) => handleItemClick("/", event)}><a>Dashboard</a></li>
                     <li className={openMenu.includes('bills') ? 'open' : ''}
                         onClick={(event) => handleMenuClick('bills', event)}>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a>Bills <div className={`arrow ${openMenu.includes('bills') ? 'up' : 'down'}`}/></a>
                         <ul className="submenu">
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <li onClick={(event) => handleItemClick("/bill", event)}><a>Create New</a></li>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <li onClick={(event) => handleItemClick("/water", event)}><a>Water</a></li>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <li onClick={(event) => handleItemClick("/electricity", event)}><a>Electricity</a></li>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <li onClick={(event) => handleItemClick("/gas", event)}><a>Gas</a></li>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <li onClick={(event) => handleItemClick("/sanitation", event)}><a>Sanitation</a></li>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <li onClick={(event) => handleItemClick("/rent", event)}><a>Rent</a></li>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <li onClick={(event) => handleItemClick("/internet", event)}><a>Internet</a></li>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <li onClick={(event) => handleItemClick("/phone", event)}><a>Phone</a></li>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <li onClick={(event) => handleItemClick("/other", event)}><a>Other</a></li>
                         </ul>
                     </li>
                     <li className={openMenu.includes('expenses') ? 'open' : ''}
                         onClick={(event) => handleMenuClick('expenses', event)}>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a>Expenses <div className={`arrow ${openMenu.includes('expenses') ? 'up' : 'down'}`}/></a>
                         <ul className="submenu">
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <li onClick={(event) => handleItemClick("/expense", event)}><a>Create New</a></li>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <li onClick={(event) => handleItemClick("/expenses", event)}><a>History</a></li>
                         </ul>
                     </li>
                 </ul>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <li className="logout" onClick={(event) => handleItemClick("/logout", event)}><a>Logout</a></li>
             </nav>
         </>

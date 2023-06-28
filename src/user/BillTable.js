@@ -15,10 +15,10 @@ const BillTable = ({bills, setBills}) => {
     const indexOfFirstBill = indexOfLastBill - billsPerPage;
 
     const currentBills = bills.slice(indexOfFirstBill, indexOfLastBill);
-    const [pageRange, setPageRange] = useState(5);
+    const [pageRange] = useState(5);
     const [startIndex, setStartIndex] = useState(0);
 
-    const [snackbar, setSnackbar] = useState({
+    const [, setSnackbar] = useState({
         open: false,
         severity: '',
         message: ''

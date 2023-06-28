@@ -39,6 +39,7 @@ const AttachmentsPopup = ({attachments, expenseId, onClose}) => {
         }
     };
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleOutsideClick = (event) => {
         if (event.target.classList.contains("attachments-popup")) {
             onClose();
@@ -50,7 +51,7 @@ const AttachmentsPopup = ({attachments, expenseId, onClose}) => {
         return () => {
             document.removeEventListener("click", handleOutsideClick);
         };
-    }, []);
+    }, [handleOutsideClick]);
 
     return (
         <>

@@ -48,7 +48,7 @@ const BillsList = ({billType}) => {
         };
 
         fetchData();
-    }, [billType, paid]);
+    }, [billType, paid, token]);
 
     const handleCheckboxChange = () => {
         setPaid(!paid);

@@ -46,7 +46,7 @@ const AdminExpensesList = () => {
         };
 
         fetchData();
-    }, [paid]);
+    }, [paid, token]);
 
     const handleCheckboxChange = () => {
         setPaid(!paid);

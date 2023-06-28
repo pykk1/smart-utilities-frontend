@@ -52,7 +52,7 @@ const BillsOverview = () => {
         };
 
         fetchData();
-    }, [paid]);
+    }, [paid, token]);
 
     const handleCheckboxChange = () => {
         setPaid(!paid);
