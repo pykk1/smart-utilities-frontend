@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import CustomerTable from "./CustomerTable";
-import {authFetch} from "../shared-components/Functions";
+import {API_BASE_URL, authFetch} from "../shared-components/Functions";
 import CustomSnackbar from "../shared-components/CustomSnackbar";
 
 
@@ -24,7 +24,7 @@ const CustomersList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await authFetch('{API_BASE_URL}/api/admin/user', {
+                const response = await authFetch(`${API_BASE_URL}/api/admin/user`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

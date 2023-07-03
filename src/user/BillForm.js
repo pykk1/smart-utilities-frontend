@@ -1,6 +1,6 @@
 import '../shared-components/style/Bill.css';
 import React, {useState} from 'react';
-import {authFetch} from '../shared-components/Functions';
+import {API_BASE_URL, authFetch} from '../shared-components/Functions';
 import CustomSnackbar from '../shared-components/CustomSnackbar';
 
 const BillForm = () => {
@@ -180,7 +180,7 @@ const BillForm = () => {
         };
 
         try {
-            const response = await authFetch('{API_BASE_URL}/api/bill', {
+            const response = await authFetch(`${API_BASE_URL}/api/bill`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

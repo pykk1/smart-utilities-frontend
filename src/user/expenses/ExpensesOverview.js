@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import CustomSnackbar from "../../shared-components/CustomSnackbar";
-import {authFetch} from "../../shared-components/Functions";
+import {API_BASE_URL, authFetch} from "../../shared-components/Functions";
 import ExpensesTable from "./ExpensesTable";
 import ExpensesPieChart from "../../shared-components/ExpensesPieChart";
 import ExpensesBarChart from "../../shared-components/ExpensesBarChart";
@@ -26,7 +26,7 @@ const ExpensesOverview = ({historical}) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await authFetch(`{API_BASE_URL}/api/expenses/all?paid=${paid}`, {
+                const response = await authFetch(`${API_BASE_URL}/api/expenses/all?paid=${paid}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

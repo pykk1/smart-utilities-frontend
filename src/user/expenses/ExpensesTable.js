@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../../shared-components/style/Table.css';
 import '../../shared-components/style/Pagination.css';
-import {authFetch, formatDate} from "../../shared-components/Functions";
+import {API_BASE_URL, authFetch, formatDate} from "../../shared-components/Functions";
 import Pagination from "../../shared-components/Pagination";
 import AttachmentsPopup from "./AttachmentsPopup";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -52,7 +52,7 @@ const ExpensesTable = ({expenses, setExpenses}) => {
 
     const handlePaymentStatusChange = async (expenseId, isPaid) => {
         try {
-            const response = await authFetch(`{API_BASE_URL}/api/expense/pay/${expenseId}`, {
+            const response = await authFetch(`${API_BASE_URL}/api/expense/pay/${expenseId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

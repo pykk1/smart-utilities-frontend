@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {authFetch} from "../../shared-components/Functions";
+import {API_BASE_URL, authFetch} from "../../shared-components/Functions";
 import CustomSnackbar from "../../shared-components/CustomSnackbar";
 import '../style/ExpenseForm.css';
 
@@ -38,7 +38,7 @@ const ExpenseForm = () => {
     useEffect(() => {
         const fetchExpenseTypes = async () => {
             try {
-                const response = await authFetch('{API_BASE_URL}/api/expenses/types', {
+                const response = await authFetch(`${API_BASE_URL}/api/expenses/types`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -178,7 +178,7 @@ const ExpenseForm = () => {
         });
 
         try {
-            const response = await authFetch('{API_BASE_URL}/api/expense', {
+            const response = await authFetch(`${API_BASE_URL}/api/expense`, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${token}`

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './style/Auth.css';
 import CustomSnackbar from '../shared-components/CustomSnackbar';
+import {API_BASE_URL} from "../shared-components/Functions";
 
 function Register() {
     const token = sessionStorage.getItem('token');
@@ -119,7 +120,7 @@ function Register() {
         }
 
         try {
-            const response = await fetch('{API_BASE_URL}/api/admin/register', {
+            const response = await fetch(`${API_BASE_URL}/api/admin/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

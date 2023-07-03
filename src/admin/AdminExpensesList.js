@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import '../shared-components/style/RandomStuff.css'
-import {authFetch} from "../shared-components/Functions";
+import {API_BASE_URL, authFetch} from "../shared-components/Functions";
 import CustomSnackbar from "../shared-components/CustomSnackbar";
 import AdminExpensesTable from "./AdminExpensesTable";
 
@@ -25,7 +25,7 @@ const AdminExpensesList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await authFetch(`{API_BASE_URL}/api/admin/expenses?paid=${paid}`, {
+                const response = await authFetch(`${API_BASE_URL}/api/admin/expenses?paid=${paid}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

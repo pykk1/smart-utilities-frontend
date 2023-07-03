@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './style/Auth.css';
 import jwt_decode from 'jwt-decode';
 import CustomSnackbar from "../shared-components/CustomSnackbar";
+import {API_BASE_URL} from "../shared-components/Functions";
 
 function Login() {
     const [username, setUsername] = useState('user1');
@@ -25,7 +26,7 @@ function Login() {
 
         try {
             const data = {username, password};
-            const response = await fetch('{API_BASE_URL}/api/auth/login', {
+            const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

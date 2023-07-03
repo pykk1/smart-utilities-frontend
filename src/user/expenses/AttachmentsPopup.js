@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../style/AttachmentsPopup.css';
-import {authFetch} from "../../shared-components/Functions";
+import {API_BASE_URL, authFetch} from "../../shared-components/Functions";
 import CustomSnackbar from "../../shared-components/CustomSnackbar";
 
 const AttachmentsPopup = ({attachments, expenseId, onClose}) => {
@@ -14,7 +14,7 @@ const AttachmentsPopup = ({attachments, expenseId, onClose}) => {
 
     const handleDownload = async (attachmentId, attachmentFileName) => {
         try {
-            const response = await authFetch(`{API_BASE_URL}/api/expense/attachment/${expenseId}/${attachmentId}`, {
+            const response = await authFetch(`${API_BASE_URL}/api/expense/attachment/${expenseId}/${attachmentId}`, {
                 headers: {
                     responseType: 'blob',
                     'Authorization': `Bearer ${token}`

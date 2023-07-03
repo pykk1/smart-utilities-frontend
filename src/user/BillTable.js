@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import '../shared-components/style/Table.css';
 import '../shared-components/style/Pagination.css';
 import Pagination from "../shared-components/Pagination";
-import {authFetch, formatDate} from "../shared-components/Functions";
+import {API_BASE_URL, authFetch, formatDate} from "../shared-components/Functions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSackDollar} from "@fortawesome/free-solid-svg-icons";
 
@@ -33,7 +33,7 @@ const BillTable = ({bills, setBills}) => {
 
     const handlePaymentStatusChange = async (billId, isPaid) => {
         try {
-            const response = await authFetch(`{API_BASE_URL}/api/bill/pay/${billId}`, {
+            const response = await authFetch(`${API_BASE_URL}/api/bill/pay/${billId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

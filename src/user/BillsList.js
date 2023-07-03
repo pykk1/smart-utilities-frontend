@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import BillTable from "./BillTable";
-import {authFetch} from "../shared-components/Functions";
+import {API_BASE_URL, authFetch} from "../shared-components/Functions";
 import CustomSnackbar from "../shared-components/CustomSnackbar";
 
 const BillsList = ({billType}) => {
@@ -24,7 +24,7 @@ const BillsList = ({billType}) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await authFetch(`{API_BASE_URL}/api/bills?billType=${billType}&paid=${paid}`, {
+                const response = await authFetch(`${API_BASE_URL}/api/bills?billType=${billType}&paid=${paid}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
